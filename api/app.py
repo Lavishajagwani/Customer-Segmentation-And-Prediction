@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, make_response
 import pandas as pd
+import os
 import joblib
 import numpy as np
 
@@ -7,11 +8,11 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the segmentation model and scaler
-seg_model_and_scaler = joblib.load("models/customer_segmentation_with_scaler.pkl")
+seg_model_and_scaler = joblib.load("api/models/customer_segmentation_with_scaler.pkl")
 segmentation_model = seg_model_and_scaler["model"]
 segmentation_scaler = seg_model_and_scaler["scaler"]
 
-prob_model_and_scaler = joblib.load("models/purchase_probability_with_scaler.pkl")
+prob_model_and_scaler = joblib.load("api/models/purchase_probability_with_scaler.pkl")
 purchase_prob_model = prob_model_and_scaler["model"]
 purchase_prob_scaler = prob_model_and_scaler["scaler"]
 
