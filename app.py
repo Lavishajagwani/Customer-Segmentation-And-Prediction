@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 import pandas as pd
 import joblib
 import numpy as np
@@ -27,9 +27,7 @@ def segment_customer():
         data = request.json
         
         # Validate the input
-        required_features = ["Age", "Previous Purchases", "Purchase Amount (USD)", 
-                             "Frequency of Purchases", "Discount Applied", "Promo Code Used", 
-                             "Subscription Status"]
+        required_features = ["Age", "Purchase Amount (USD)"]
         
         # Check for missing features
         for feature in required_features:
@@ -62,9 +60,7 @@ def predict_purchase_probability():
         data = request.json
         
         # Validate input
-        required_features = ["Age", "Previous Purchases", "Purchase Amount (USD)", 
-                             "Frequency of Purchases", "Discount Applied", "Promo Code Used", 
-                             "Subscription Status", "Review Rating"]
+        required_features = ["Age", "Previous Purchases", "Purchase Amount (USD)", "Review Rating"]
         
         # Check for missing features
         for feature in required_features:
@@ -88,6 +84,11 @@ def predict_purchase_probability():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.after_request
+def add_header(response):
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 # Run Flask app
 if __name__ == "__main__":
