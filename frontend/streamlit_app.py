@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 # API Endpoints
-SEGMENTATION_API_URL = "http://127.0.0.1:5000/segment"  # Update if deployed elsewhere
-PURCHASE_PROB_API_URL = "http://127.0.0.1:5000/purchase-probability"  # Update if deployed elsewhere
+SEGMENTATION_API_URL = "https://customer-segmentation-and-prediction.onrender.com/segment"  # Update if deployed elsewhere
+PURCHASE_PROB_API_URL = "https://customer-segmentation-and-prediction.onrender.com/purchase-probability"  # Update if deployed elsewhere
 
 st.title("Customer Insights Dashboard 📊")
 
