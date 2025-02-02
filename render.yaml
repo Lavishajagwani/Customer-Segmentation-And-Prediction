@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: customer-segmentation-and-prediction-api  # Can be any name you choose
+    env: python
+    runtime: python3.11.2  # Update to match your local Python version
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
